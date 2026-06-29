@@ -21,6 +21,11 @@
   box-sizing: border-box;
 }
 
+/* Hide default cursor — custom cursor takes over on non-touch devices */
+*, *::before, *::after, a, button, [role="button"] {
+  cursor: none !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
