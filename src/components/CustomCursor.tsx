@@ -54,7 +54,7 @@ export default function CustomCursor() {
       {/* Solid neon dot — instant */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full bg-[#39ff14]"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full bg-[#c084fc]"
         style={{
           width: 6,
           height: 6,

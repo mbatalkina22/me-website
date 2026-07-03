@@ -4,8 +4,8 @@
 @theme inline {
   --color-background: #0a0a0a;
   --color-foreground: #ededed;
-  --color-neon: #39ff14;
-  --color-neon-dim: #39ff1422;
+  --color-neon: #c084fc;
+  --color-neon-dim: #c084fc22;
   --color-surface: #111111;
   --color-surface-2: #1a1a1a;
   --color-border: #222222;
@@ -75,18 +75,18 @@ body {
 /* ─── Grid background texture ────────────────────────────────────── */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(192, 132, 252, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192, 132, 252, 0.03) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
 /* ─── Neon glow utilities ────────────────────────────────────────── */
 .neon-glow {
-  box-shadow: 0 0 12px rgba(57, 255, 20, 0.4), 0 0 40px rgba(57, 255, 20, 0.1);
+  box-shadow: 0 0 12px rgba(192, 132, 252, 0.4), 0 0 40px rgba(192, 132, 252, 0.1);
 }
 
 .neon-text-glow {
-  text-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
+  text-shadow: 0 0 20px rgba(192, 132, 252, 0.6);
 }
 
 /* ─── 3D Tilt card perspective wrapper ───────────────────────────── */

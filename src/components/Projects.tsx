@@ -21,7 +21,7 @@ const projects: Project[] = [
     solution:
       "Engineered an agentic lookup layer using Python, Pydantic AI, and a Qdrant Vector DB to enforce strict user data segregation.",
     tags: ["Python", "Pydantic AI", "Qdrant", "Vector DB", "AI"],
-    gradient: "from-[#39ff14]/10 via-transparent to-transparent",
+    gradient: "from-[#c084fc]/10 via-transparent to-transparent",
   },
   {
     id: "glitchlab",
@@ -31,7 +31,7 @@ const projects: Project[] = [
     solution:
       "Acted as the sole engineer to build a secure, Role-Based Access Control (RBAC) platform from scratch using Next.js and MongoDB.",
     tags: ["Next.js", "MongoDB", "RBAC", "TypeScript"],
-    gradient: "from-[#39ff14]/10 via-transparent to-transparent",
+    gradient: "from-[#c084fc]/10 via-transparent to-transparent",
   },
 ];
 
@@ -85,7 +85,7 @@ function TiltCard({ project }: { project: Project }) {
           style={{
             opacity: isHovered ? 1 : 0,
             background: isHovered
-              ? `radial-gradient(circle at ${glowX.get()}% ${glowY.get()}%, rgba(57,255,20,0.10) 0%, transparent 60%)`
+              ? `radial-gradient(circle at ${glowX.get()}% ${glowY.get()}%, rgba(192,132,252,0.10) 0%, transparent 60%)`
               : "none",
           }}
         />
@@ -97,14 +97,14 @@ function TiltCard({ project }: { project: Project }) {
 
         {/* Neon top border on hover */}
         <div
-          className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#39ff14] to-transparent transition-opacity duration-500 ${
+          className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c084fc] to-transparent transition-opacity duration-500 ${
             isHovered ? "opacity-100" : "opacity-0"
           }`}
         />
 
         <div className="relative z-10 p-8 flex flex-col gap-6">
           {/* Project number */}
-          <span className="font-mono text-[#39ff14]/40 text-xs tracking-widest">
+          <span className="font-mono text-[#c084fc]/40 text-xs tracking-widest">
             0{projects.indexOf(project) + 1}
           </span>
 
@@ -115,7 +115,7 @@ function TiltCard({ project }: { project: Project }) {
 
           {/* Problem */}
           <div className="space-y-1.5">
-            <p className="text-xs font-semibold tracking-widest uppercase text-[#39ff14]/60">
+            <p className="text-xs font-semibold tracking-widest uppercase text-[#c084fc]/60">
               The Problem
             </p>
             <p className="text-[#ededed]/60 text-sm leading-relaxed">
@@ -128,7 +128,7 @@ function TiltCard({ project }: { project: Project }) {
 
           {/* Solution */}
           <div className="space-y-1.5">
-            <p className="text-xs font-semibold tracking-widest uppercase text-[#39ff14]/60">
+            <p className="text-xs font-semibold tracking-widest uppercase text-[#c084fc]/60">
               The Solution
             </p>
             <p className="text-[#ededed]/80 text-sm leading-relaxed">
@@ -141,7 +141,7 @@ function TiltCard({ project }: { project: Project }) {
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 rounded-full text-xs font-mono border border-[#39ff14]/25 bg-[#39ff14]/5 text-[#39ff14]/80"
+                className="px-3 py-1 rounded-full text-xs font-mono border border-[#c084fc]/25 bg-[#c084fc]/5 text-[#c084fc]/80"
               >
                 {tag}
               </span>
@@ -165,7 +165,7 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <p className="text-[#39ff14] text-sm font-semibold tracking-widest uppercase mb-3">
+          <p className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase mb-3">
             Selected Work
           </p>
           <h2 className="text-4xl sm:text-5xl font-black text-white">

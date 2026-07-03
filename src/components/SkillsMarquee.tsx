@@ -27,7 +27,7 @@ export default function SkillsMarquee() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-[#39ff14] text-sm font-semibold tracking-widest uppercase mb-3">
+          <p className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase mb-3">
             Technologies
           </p>
           <h2 className="text-4xl sm:text-5xl font-black text-white">
@@ -63,10 +63,10 @@ export default function SkillsMarquee() {
           {doubled.map((skill, i) => (
             <div
               key={`${skill.label}-${i}`}
-              className="group flex items-center gap-3 mx-4 px-6 py-3.5 rounded-full border border-[#222] bg-[#111] hover:border-[#39ff14]/50 hover:bg-[#39ff14]/5 transition-all duration-300 cursor-default select-none whitespace-nowrap"
+              className="group flex items-center gap-3 mx-4 px-6 py-3.5 rounded-full border border-[#222] bg-[#111] hover:border-[#c084fc]/50 hover:bg-[#c084fc]/5 transition-all duration-300 cursor-default select-none whitespace-nowrap"
             >
               <span
-                className="text-lg leading-none font-mono w-6 text-center text-[#39ff14]/60 group-hover:text-[#39ff14] transition-colors duration-300"
+                className="text-lg leading-none font-mono w-6 text-center text-[#c084fc]/60 group-hover:text-[#c084fc] transition-colors duration-300"
                 aria-hidden="true"
               >
                 {skill.icon}

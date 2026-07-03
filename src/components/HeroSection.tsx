@@ -36,7 +36,7 @@ export default function HeroSection() {
       >
         <div
           className="w-[600px] h-[600px] rounded-full opacity-10 blur-[120px]"
-          style={{ background: "radial-gradient(circle, #39ff14 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, #c084fc 0%, transparent 70%)" }}
         />
       </div>
 
@@ -48,8 +48,8 @@ export default function HeroSection() {
       >
         {/* Eyebrow badge */}
         <motion.div variants={itemVariants}>
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#39ff14]/30 bg-[#39ff14]/5 text-[#39ff14] text-sm font-medium tracking-widest uppercase">
-            <span className="w-2 h-2 rounded-full bg-[#39ff14] animate-pulse" />
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#c084fc]/30 bg-[#c084fc]/5 text-[#c084fc] text-sm font-medium tracking-widest uppercase">
+            <span className="w-2 h-2 rounded-full bg-[#c084fc] animate-pulse" />
             Available for new opportunities
           </span>
         </motion.div>
@@ -84,7 +84,7 @@ export default function HeroSection() {
         <motion.p
           variants={itemVariants}
           className="text-xl sm:text-2xl font-semibold tracking-wide"
-          style={{ color: "#39ff14" }}
+          style={{ color: "#c084fc" }}
         >
           Software Engineer.{" "}
           <span className="text-[#ededed]/70">Former Elite Athlete.</span>
@@ -102,7 +102,7 @@ export default function HeroSection() {
         {/* Divider */}
         <motion.div
           variants={itemVariants}
-          className="w-16 h-px bg-[#39ff14]/40"
+          className="w-16 h-px bg-[#c084fc]/40"
         />
 
         {/* CTA Buttons */}
@@ -116,11 +116,11 @@ export default function HeroSection() {
             whileHover={{
               scale: 1.05,
               boxShadow:
-                "0 0 20px rgba(57,255,20,0.5), 0 0 60px rgba(57,255,20,0.15)",
+                "0 0 20px rgba(192,132,252,0.5), 0 0 60px rgba(192,132,252,0.15)",
             }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#39ff14] text-black font-bold text-sm tracking-wide cursor-pointer select-none"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#c084fc] text-black font-bold text-sm tracking-wide cursor-pointer select-none"
           >
             <FolderOpen size={16} />
             View Projects
@@ -131,11 +131,11 @@ export default function HeroSection() {
             id="hero-download-cv"
             whileHover={{
               scale: 1.05,
-              boxShadow: "0 0 20px rgba(57,255,20,0.2)",
+              boxShadow: "0 0 20px rgba(192,132,252,0.2)",
             }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-[#39ff14]/50 bg-[#39ff14]/5 text-[#39ff14] font-bold text-sm tracking-wide cursor-pointer select-none hover:bg-[#39ff14]/10 transition-colors"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-[#c084fc]/50 bg-[#c084fc]/5 text-[#c084fc] font-bold text-sm tracking-wide cursor-pointer select-none hover:bg-[#c084fc]/10 transition-colors"
           >
             <ArrowDownToLine size={16} />
             Download CV
@@ -156,7 +156,7 @@ export default function HeroSection() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-10 bg-gradient-to-b from-[#39ff14]/50 to-transparent"
+          className="w-px h-10 bg-gradient-to-b from-[#c084fc]/50 to-transparent"
         />
       </motion.div>
     </section>

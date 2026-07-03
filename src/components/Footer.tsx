@@ -32,7 +32,7 @@ export default function Footer() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px"
         style={{
           background:
-            "linear-gradient(to right, transparent, rgba(57,255,20,0.5), transparent)",
+            "linear-gradient(to right, transparent, rgba(192,132,252,0.5), transparent)",
         }}
       />
 
@@ -44,14 +44,14 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-[#39ff14] text-xs font-semibold tracking-widest uppercase mb-4">
+          <p className="text-[#c084fc] text-xs font-semibold tracking-widest uppercase mb-4">
             Let&apos;s Connect
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white max-w-2xl leading-tight">
             Ready to commit{" "}
             <span
               className="neon-text-glow"
-              style={{ color: "#39ff14" }}
+              style={{ color: "#c084fc" }}
             >
               100%
             </span>{" "}
@@ -78,7 +78,7 @@ export default function Footer() {
               whileHover={{ scale: 1.1, y: -3 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="flex items-center justify-center w-12 h-12 rounded-full border border-[#222] bg-[#111] text-[#ededed]/50 hover:text-[#39ff14] hover:border-[#39ff14]/50 hover:bg-[#39ff14]/5 transition-colors duration-300"
+              className="flex items-center justify-center w-12 h-12 rounded-full border border-[#222] bg-[#111] text-[#ededed]/50 hover:text-[#c084fc] hover:border-[#c084fc]/50 hover:bg-[#c084fc]/5 transition-colors duration-300"
             >
               <Icon size={18} />
             </motion.a>
@@ -101,7 +101,7 @@ export default function Footer() {
           </p>
           <p className="font-mono">
             Built with{" "}
-            <span className="text-[#39ff14]/60">Next.js · Tailwind · Framer Motion</span>
+            <span className="text-[#c084fc]/60">Next.js · Tailwind · Framer Motion</span>
           </p>
         </motion.div>
       </div>
