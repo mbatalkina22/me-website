@@ -1,172 +1,125 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Target, Gauge, Zap } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 /* ─── Constants ─────────────────────────────────────────────── */
 
 const EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
-/* ─── Card data ─────────────────────────────────────────────── */
+/* ─── Word data ─────────────────────────────────────────────── */
 
-const CARDS = [
+const WORDS = [
   {
-    id: "discipline",
-    icon: Target,
-    title: "The Discipline",
-    description:
-      "For 12 years, I mastered the physical resilience and absolute precision of professional ballet. I treat zero-regression code architecture with the exact same rigor.",
+    id: "precision",
+    label: "PRECISION.",
+    story:
+      "12 years of professional ballet. I mastered physical resilience and absolute form. Today, I treat zero-regression code architecture with that exact same rigor.",
   },
   {
-    id: "drive",
-    icon: Gauge,
-    title: "The Drive",
-    description:
-      "I never stop seeking the next challenge. Currently mastering the mechanics of balance and acceleration on a motorcycle to keep my growth mindset sharp.",
+    id: "velocity",
+    label: "VELOCITY.",
+    story:
+      "I never stop seeking the next challenge. Whether calculating racing lines on a motorcycle or navigating technical downhill mountain bike trails, I thrive on mastering mechanics and calculated risk.",
   },
   {
-    id: "craft",
-    icon: Zap,
-    title: "The Craft",
-    description:
-      "Today, I channel that relentless drive into engineering secure, multi-tenant AI backends and high-performance Next.js ecosystems.",
+    id: "architecture",
+    label: "ARCHITECTURE.",
+    story:
+      "I am ready to commit 100% to my next challenge: channeling this relentless drive into engineering secure, multi-tenant AI backends and high-performance Next.js ecosystems.",
   },
 ] as const;
 
-/* ─── Aceternity-style 3D tilt card ─────────────────────────── */
+/* ─── KineticWord ────────────────────────────────────────────── */
 /*
- * Architecture:
- *   perspective wrapper (CSS perspective: 1200px)
- *     └── card body motion.div (rotateX, rotateY via useSpring,
- *                               transformStyle: preserve-3d)
- *           ├── icon  motion.div  (translateZ: 60 → pops toward viewer)
- *           ├── title motion.div  (translateZ: 40 → mid-depth)
- *           └── desc  motion.div  (translateZ: 20 → subtle depth,
- *                                  opacity 0→1 on hover)
+ * Layout chain for smooth sibling animations:
+ *
+ *   outer container  [layout]       ← tracks its own height change
+ *     h2             [layout="position"]  ← tracks only its position
+ *     AnimatePresence > story div   ← mounts/unmounts the text
+ *
+ * When one word expands, Framer Motion re-measures all sibling
+ * KineticWord containers (which also have `layout`) and animates
+ * them to their new y positions.
+ *
+ * onHoverStart / onHoverEnd drive the active state.
+ * onClick toggles it for touch devices (tap-to-expand/collapse).
  */
-function StoryCard({
-  icon: Icon,
-  title,
-  description,
+function KineticWord({
+  label,
+  story,
+  delay,
 }: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
+  label: string;
+  story: string;
+  delay: number;
 }) {
-  const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-
-  /* Raw rotation values driven directly by mouse position */
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
-
-  /* Spring-smooth the rotation for buttery feel */
-  const smoothRotateX = useSpring(rotateX, { stiffness: 280, damping: 28, mass: 0.5 });
-  const smoothRotateY = useSpring(rotateY, { stiffness: 280, damping: 28, mass: 0.5 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    /* Map cursor position to ±12deg tilt */
-    rotateX.set(((y - rect.height / 2) / (rect.height / 2)) * -12);
-    rotateY.set(((x - rect.width / 2) / (rect.width / 2)) * 12);
-  };
-
-  const handleMouseLeave = () => {
-    /* Spring back to flat */
-    rotateX.set(0);
-    rotateY.set(0);
-    setIsHovered(false);
-  };
+  const [isLocked, setIsLocked] = useState(false); /* click-lock for mobile */
+  const isActive = isHovered || isLocked;
 
   return (
-    /* Perspective container — must NOT have transform itself */
-    <div style={{ perspective: "1200px" }} className="w-full">
-      <motion.div
-        ref={cardRef}
-        /* ── Transform state (MotionValues bypass animate engine) ── */
-        style={{
-          rotateX: smoothRotateX,
-          rotateY: smoothRotateY,
-          transformStyle: "preserve-3d", /* must be on parent for child translateZ */
-        }}
-        /* ── Glow/shadow driven by animate (normal Framer engine) ── */
+    <motion.div
+      layout /* ← this element re-animates when its height changes */
+      initial={{ opacity: 0, x: -28 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.75, delay, ease: EASE }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      onClick={() => setIsLocked((v) => !v)}
+      className="cursor-default"
+    >
+      {/* ── The massive word ──────────────────────────────────── */}
+      <motion.h2
+        layout="position"
         animate={{
-          boxShadow: isHovered
-            ? "0 0 45px rgba(192,132,252,0.22), 0 0 90px rgba(192,132,252,0.08), 0 32px 64px -16px rgba(0,0,0,0.95)"
-            : "0 20px 40px -16px rgba(0,0,0,0.65)",
+          color: isActive
+            ? "#c084fc"
+            : "rgba(255, 255, 255, 0.11)",
+          filter: isActive
+            ? "drop-shadow(0 0 28px rgba(192, 132, 252, 0.55)) drop-shadow(0 0 60px rgba(192, 132, 252, 0.2))"
+            : "drop-shadow(0 0 0px rgba(192, 132, 252, 0))",
+          x: isActive ? 4 : 0,
         }}
-        transition={{
-          /* Box shadow transitions independently of the spring rotation */
-          boxShadow: { duration: 0.5, ease: "easeOut" },
-        }}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
-        /* ── Visual styles — border color driven by JS hover state ── */
-        className={[
-          "relative w-full min-h-[320px] rounded-2xl p-8 cursor-default",
-          "bg-neutral-900 border",
-          "transition-colors duration-500",
-          isHovered ? "border-purple-500/30" : "border-white/[0.07]",
-        ].join(" ")}
+        transition={{ duration: 0.38, ease: EASE }}
+        className="
+          select-none font-black tracking-tighter leading-none
+          text-[clamp(3.2rem,9.5vw,8.5rem)]
+        "
       >
-        {/* ── Icon (translateZ: 60 — pops most toward viewer) ──── */}
-        <motion.div
-          style={{ translateZ: 60 }}
-          animate={{
-            backgroundColor: isHovered
-              ? "rgba(192,132,252,0.13)"
-              : "rgba(255,255,255,0.04)",
-          }}
-          transition={{ duration: 0.4, ease: EASE }}
-          className="mb-6 w-11 h-11 flex items-center justify-center rounded-xl"
-        >
-          <Icon
-            size={20}
-            className={`transition-colors duration-300 ${
-              isHovered ? "text-[#c084fc]" : "text-white/35"
-            }`}
-          />
-        </motion.div>
+        {label}
+      </motion.h2>
 
-        {/* ── Title (translateZ: 40) ─────────────────────────────── */}
-        <motion.div style={{ translateZ: 40 }}>
-          <h3 className="text-xl font-bold text-white tracking-tight mb-5 leading-tight">
-            {title}
-          </h3>
-        </motion.div>
-
-        {/* ── Description — fades in + slides up on hover ─────── */}
-        {/*   translateZ: 20 composes with animate {y, opacity}    */}
-        <motion.div
-          style={{ translateZ: 20 }}
-          animate={{
-            opacity: isHovered ? 1 : 0,
-            y: isHovered ? 0 : 10,
-          }}
-          transition={{ duration: 0.35, ease: EASE }}
-        >
-          <p className="text-sm text-white/55 leading-relaxed">
-            {description}
-          </p>
-        </motion.div>
-
-        {/* ── "Hover to reveal" hint — fades out on hover ─────── */}
-        <motion.span
-          style={{ translateZ: 20 }}
-          animate={{ opacity: isHovered ? 0 : 1 }}
-          transition={{ duration: 0.25, ease: EASE }}
-          className="absolute bottom-8 left-8 text-[10px] text-white/18 font-mono tracking-[0.22em] uppercase select-none"
-          aria-hidden="true"
-        >
-          hover to reveal
-        </motion.span>
-      </motion.div>
-    </div>
+      {/* ── Story text — mounts/unmounts with AnimatePresence ─── */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{
+              opacity: 0,
+              y: 8,
+              transition: { duration: 0.15, ease: EASE },
+            }}
+            transition={{ duration: 0.4, ease: EASE }}
+            className="pt-3 pb-6 pl-1"
+          >
+            {/* Purple left-border accent */}
+            <motion.div
+              initial={{ scaleY: 0, originY: 0 }}
+              animate={{ scaleY: 1 }}
+              exit={{ scaleY: 0, transition: { duration: 0.12 } }}
+              transition={{ duration: 0.3, ease: EASE }}
+              className="border-l-2 border-purple-500/40 pl-5 max-w-2xl"
+            >
+              <p className="text-white/45 text-base sm:text-[1.05rem] leading-relaxed font-light">
+                {story}
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -176,69 +129,64 @@ export default function HeroManifesto() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center px-6 py-24 sm:py-32 overflow-hidden"
+      className="
+        relative min-h-screen bg-[#0a0a0a]
+        flex flex-col justify-center
+        px-6 sm:px-12 lg:px-20 xl:px-28
+        py-20
+        overflow-hidden
+      "
     >
-      {/* ── Ambient purple glow — top-center ──────────────────── */}
+      {/* ── Ambient glow — top-left, editorial feel ─────────── */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] blur-[130px]"
+        className="pointer-events-none absolute top-0 left-0 w-[700px] h-[500px] blur-[120px]"
         style={{
-          opacity: 0.18,
+          opacity: 0.12,
           background:
-            "radial-gradient(ellipse at center top, #c084fc 0%, transparent 55%)",
+            "radial-gradient(ellipse at 15% 25%, #c084fc 0%, transparent 60%)",
         }}
       />
 
-      {/* ── Hero header ─────────────────────────────────────────
-       *   Three staggered fade-up animations:
-       *   name → 0s, sub-headline → +0.15s, tagline → +0.3s
-       * ────────────────────────────────────────────────────── */}
-      <div className="text-center mb-16 sm:mb-20 max-w-4xl relative z-10">
-        <motion.h1
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: EASE }}
-          className="text-[clamp(3rem,9vw,7rem)] font-black text-white leading-[0.88] tracking-tight mb-5"
-        >
-          Mariia Batalkina
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.15, ease: EASE }}
-          className="text-[clamp(1rem,2.4vw,1.3rem)] font-semibold text-[#c084fc] tracking-wide mb-4"
-        >
-          Software Engineer. Former Elite Athlete.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.3, ease: EASE }}
-          className="text-sm sm:text-base text-white/25 leading-relaxed max-w-md mx-auto"
-        >
-          Hover the cards below to see how 12 years of physical discipline
-          engineered my approach to scalable web architecture.
-        </motion.p>
-      </div>
-
-      {/* ── 3D Story cards ──────────────────────────────────────
-       *   grid-cols-1 on mobile → grid-cols-3 on md+
-       *   Slight delay so they animate after the header
+      {/* ── Hook text ───────────────────────────────────────────
+       *   Name + location, then instruction hint below it.
        * ────────────────────────────────────────────────────── */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.45, ease: EASE }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-5xl relative z-10"
+        transition={{ duration: 0.85, ease: EASE }}
+        className="mb-10 sm:mb-14 relative z-10"
       >
-        {CARDS.map((card) => (
-          <StoryCard
-            key={card.id}
-            icon={card.icon}
-            title={card.title}
-            description={card.description}
+        <p className="text-white/50 text-sm sm:text-[0.95rem] font-light tracking-wide leading-relaxed">
+          Mariia Batalkina. Software Engineer. Based in Switzerland.
+        </p>
+        <p className="mt-2 text-[10px] sm:text-[11px] text-white/18 tracking-[0.25em] uppercase font-mono">
+          Hover to expand the timeline.
+        </p>
+      </motion.div>
+
+      {/* ── Kinetic words container ─────────────────────────────
+       *
+       *   `layout` here is REQUIRED so that when one KineticWord
+       *   expands, Framer Motion detects the container's layout
+       *   has changed and can animate siblings.
+       *
+       *   Each KineticWord also has `layout` so its own y-position
+       *   change is animated (the slide-down of subsequent words).
+       * ────────────────────────────────────────────────────── */}
+      <motion.div
+        layout
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.25 }}
+        className="relative z-10 flex flex-col"
+      >
+        {WORDS.map((w, i) => (
+          <KineticWord
+            key={w.id}
+            label={w.label}
+            story={w.story}
+            delay={0.38 + i * 0.12}
           />
         ))}
       </motion.div>
