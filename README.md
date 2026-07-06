@@ -22,19 +22,24 @@ A minimalist, single-page portfolio designed to be fast and highly interactive. 
 
 ## Local Development
 
-1. Clone the repository:
+1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/mbatalkina22/me-website.git](https://github.com/mbatalkina22/me-website.git)
-Navigate into the directory:
+   git clone https://github.com/mbatalkina22/me-website.git
+   ```
 
-```bash
-cd me-website
-Install dependencies:
+2. **Navigate into the directory:**
+   ```bash
+   cd me-website
+   ```
 
-```bash
-npm install
-Start the development server:
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-Open http://localhost:3000 with your browser to see the result.
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
