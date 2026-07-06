@@ -3,8 +3,6 @@
 import { motion } from "framer-motion";
 import { GitFork, Link2, Mail } from "lucide-react";
 
-/* ─── Constants ─────────────────────────────────────────────── */
-
 const EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
 const LINKS = [
@@ -31,8 +29,6 @@ const LINKS = [
 export default function Footer() {
   return (
     <footer id="contact" className="relative bg-[#0a0a0a] pt-28 pb-14 px-6">
-
-      {/* ── Neon top-border glow ─────────────────────────────── */}
       <div
         aria-hidden="true"
         className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px"
@@ -43,8 +39,6 @@ export default function Footer() {
       />
 
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-10 text-center">
-
-        {/* ── Eyebrow + heading ───────────────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -52,18 +46,14 @@ export default function Footer() {
           transition={{ duration: 0.75, ease: EASE }}
           className="flex flex-col items-center gap-2"
         >
-          {/* Eyebrow — matches Toolkit "TECHNOLOGIES" label exactly */}
           <p className="text-sm uppercase tracking-[0.2em] text-purple-400 font-semibold">
             Next Challenge
           </p>
-
-          {/* Heading — matches Toolkit "The Toolkit" size exactly */}
           <h2 className="text-4xl sm:text-5xl font-black text-white">
             Let&apos;s connect.
           </h2>
         </motion.div>
 
-        {/* ── Social icons ─────────────────────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,10 +89,8 @@ export default function Footer() {
           ))}
         </motion.div>
 
-        {/* ── Divider ──────────────────────────────────────────── */}
         <div className="w-full h-px bg-white/[0.05] mt-2" />
 
-        {/* ── Copyright bar ────────────────────────────────────── */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -116,7 +104,6 @@ export default function Footer() {
             <span className="text-[#c084fc]/40">Tailwind · Framer Motion</span>
           </p>
         </motion.div>
-
       </div>
     </footer>
   );

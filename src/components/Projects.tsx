@@ -16,8 +16,7 @@ const projects: Project[] = [
   {
     id: "ai-backend",
     title: "Multi-Tenant AI Backend",
-    problem:
-      "Unstructured AI data is notoriously hard to secure and validate.",
+    problem: "Unstructured AI data is notoriously hard to secure and validate.",
     solution:
       "Engineered an agentic lookup layer using Python, Pydantic AI, and a Qdrant Vector DB to enforce strict user data segregation.",
     tags: ["Python", "Pydantic AI", "Qdrant", "Vector DB", "AI"],
@@ -56,10 +55,8 @@ function TiltCard({ project }: { project: Project }) {
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    rawX.set(x);
-    rawY.set(y);
+    rawX.set((e.clientX - rect.left) / rect.width - 0.5);
+    rawY.set((e.clientY - rect.top) / rect.height - 0.5);
   }
 
   function handleMouseLeave() {
@@ -79,9 +76,8 @@ function TiltCard({ project }: { project: Project }) {
         onMouseLeave={handleMouseLeave}
         className="relative rounded-2xl border border-[#222] bg-[#111] overflow-hidden cursor-default h-full"
       >
-        {/* Dynamic glow that follows the mouse */}
         <motion.div
-          className="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-300"
+          className="absolute inset-0 pointer-events-none"
           style={{
             opacity: isHovered ? 1 : 0,
             background: isHovered
@@ -90,12 +86,10 @@ function TiltCard({ project }: { project: Project }) {
           }}
         />
 
-        {/* Top gradient accent */}
         <div
           className={`absolute top-0 left-0 right-0 h-32 bg-gradient-to-b ${project.gradient} pointer-events-none`}
         />
 
-        {/* Neon top border on hover */}
         <div
           className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c084fc] to-transparent transition-opacity duration-500 ${
             isHovered ? "opacity-100" : "opacity-0"
@@ -103,17 +97,14 @@ function TiltCard({ project }: { project: Project }) {
         />
 
         <div className="relative z-10 p-8 flex flex-col gap-6">
-          {/* Project number */}
           <span className="font-mono text-[#c084fc]/40 text-xs tracking-widest">
             0{projects.indexOf(project) + 1}
           </span>
 
-          {/* Title */}
           <h3 className="text-2xl font-black text-white leading-tight">
             {project.title}
           </h3>
 
-          {/* Problem */}
           <div className="space-y-1.5">
             <p className="text-xs font-semibold tracking-widest uppercase text-[#c084fc]/60">
               The Problem
@@ -123,10 +114,8 @@ function TiltCard({ project }: { project: Project }) {
             </p>
           </div>
 
-          {/* Divider */}
           <div className="w-full h-px bg-[#222]" />
 
-          {/* Solution */}
           <div className="space-y-1.5">
             <p className="text-xs font-semibold tracking-widest uppercase text-[#c084fc]/60">
               The Solution
@@ -136,7 +125,6 @@ function TiltCard({ project }: { project: Project }) {
             </p>
           </div>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-2 mt-auto pt-2">
             {project.tags.map((tag) => (
               <span
@@ -157,7 +145,6 @@ export default function Projects() {
   return (
     <section id="projects" className="py-28 px-6 bg-[#0d0d0d]">
       <div className="max-w-6xl mx-auto">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -173,7 +160,6 @@ export default function Projects() {
           </h2>
         </motion.div>
 
-        {/* 2-col grid */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
