@@ -171,9 +171,6 @@ export default function Projects() {
           <h2 className="text-4xl sm:text-5xl font-black text-white">
             The Playground
           </h2>
-          <p className="mt-4 text-[#ededed]/50 max-w-xl mx-auto text-base">
-            Real problems. Engineered solutions. Move your mouse over each card.
-          </p>
         </motion.div>
 
         {/* 2-col grid */}

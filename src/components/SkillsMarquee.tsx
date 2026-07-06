@@ -33,10 +33,6 @@ export default function SkillsMarquee() {
           <h2 className="text-4xl sm:text-5xl font-black text-white">
             The Toolkit
           </h2>
-          <p className="mt-4 text-[#ededed]/50 max-w-xl mx-auto text-base">
-            Tools I use to turn complex problems into elegant, production-ready
-            systems.
-          </p>
         </motion.div>
       </div>
 
