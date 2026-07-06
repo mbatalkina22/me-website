@@ -27,14 +27,14 @@ A minimalist, single-page portfolio designed to be fast and highly interactive. 
    git clone [https://github.com/mbatalkina22/me-website.git](https://github.com/mbatalkina22/me-website.git)
 Navigate into the directory:
 
-Bash
+```bash
 cd me-website
 Install dependencies:
 
-Bash
+```bash
 npm install
 Start the development server:
 
-Bash
+```bash
 npm run dev
 Open http://localhost:3000 with your browser to see the result.
