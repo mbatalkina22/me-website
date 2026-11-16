@@ -23,7 +23,7 @@ const WORDS = [
     id: "architecture",
     label: "ARCHITECTURE.",
     story:
-      "Today, I am based in Switzerland and ready to commit 100% to channeling this relentless drive into engineering secure, multi-tenant AI backends and high-performance Next.js ecosystems.",
+      "Today, I am based in Switzerland and channel this drive into engineering reliable AI systems: retrieval pipelines, validated LLM outputs and secure, multi-tenant backends.",
   },
 ] as const;
 
@@ -56,7 +56,7 @@ function KineticWord({
         animate={{
           opacity: 1,
           x: 0,
-          color: isActive ? "#c084fc" : "rgba(255, 255, 255, 0.11)",
+          color: isActive ? "#c084fc" : "rgba(255, 255, 255, 0.28)",
           filter: isActive
             ? "drop-shadow(0 0 28px rgba(192,132,252,0.55)) drop-shadow(0 0 60px rgba(192,132,252,0.2))"
             : "drop-shadow(0 0 0px rgba(192,132,252,0))",
@@ -78,7 +78,7 @@ function KineticWord({
           >
             <div className="pt-4 pb-6 pl-2">
               <div className="border-l-2 border-purple-500/40 pl-5 max-w-2xl">
-                <p className="text-white/50 text-sm md:text-base leading-relaxed font-light">
+                <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
                   {story}
                 </p>
               </div>
@@ -111,11 +111,15 @@ export default function HeroManifesto() {
         transition={{ duration: 0.85, ease: "easeInOut" }}
         className="mb-10 sm:mb-14 relative z-10"
       >
-        <p className="text-white/50 text-sm sm:text-[0.95rem] font-light tracking-wide leading-relaxed">
+        <p className="text-white/70 text-sm sm:text-[0.95rem] font-light tracking-wide leading-relaxed">
           Mariia Batalkina. Software Engineer. Based in Switzerland.
         </p>
-        <p className="mt-2 text-[10px] sm:text-[11px] text-white/18 tracking-[0.25em] uppercase font-mono">
-          Hover to expand the timeline.
+        <p className="mt-3 max-w-2xl text-white/55 text-sm sm:text-base font-light leading-relaxed">
+          I build LLM systems that work reliably on real company data: retrieval, output validation and
+          secure, multi-tenant data access. Currently pursuing an AI-focused M.Sc. at USI.
+        </p>
+        <p className="mt-3 text-[10px] sm:text-[11px] text-white/40 tracking-[0.25em] uppercase font-mono">
+          Hover or tap a word to read the story.
         </p>
       </motion.div>
 

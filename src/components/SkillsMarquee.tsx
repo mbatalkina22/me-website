@@ -3,15 +3,18 @@
 import { motion } from "framer-motion";
 
 const skills = [
-  { label: "React", icon: "⚛️" },
-  { label: "Next.js", icon: "▲" },
-  { label: "TypeScript", icon: "TS" },
   { label: "Python", icon: "🐍" },
-  { label: "PostgreSQL", icon: "🐘" },
-  { label: "Tailwind CSS", icon: "🎨" },
+  { label: "LlamaIndex", icon: "🦙" },
+  { label: "Qdrant", icon: "◆" },
+  { label: "Pydantic AI", icon: "🤖" },
+  { label: "FastAPI", icon: "⚡" },
+  { label: "Java / Spring Boot", icon: "☕" },
+  { label: "SQL / PostgreSQL", icon: "🐘" },
+  { label: "TypeScript", icon: "TS" },
+  { label: "Next.js", icon: "▲" },
+  { label: "React", icon: "⚛️" },
   { label: "Docker", icon: "🐳" },
   { label: "Kubernetes", icon: "☸️" },
-  { label: "Pydantic AI", icon: "🤖" },
 ];
 
 const doubled = [...skills, ...skills];

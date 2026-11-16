@@ -10,27 +10,37 @@ interface Project {
   solution: string;
   tags: string[];
   gradient: string;
+  link: { href: string; label: string };
 }
 
 const projects: Project[] = [
   {
     id: "ai-backend",
     title: "Multi-Tenant AI Backend",
-    problem: "Unstructured AI data is notoriously hard to secure and validate.",
+    problem:
+      "Companies want LLMs to work on their own documents, but each client's data must stay private and raw LLM output is unreliable.",
     solution:
-      "Engineered an agentic lookup layer using Python, Pydantic AI, and a Qdrant Vector DB to enforce strict user data segregation.",
-    tags: ["Python", "Pydantic AI", "Qdrant", "Vector DB", "AI"],
+      "A multi-tenant RAG backend: documents are parsed, chunked and embedded locally (no third-party API), each tenant's data is isolated in Qdrant, and every LLM answer is validated against a JSON schema with Pydantic AI.",
+    tags: ["Python", "FastAPI", "LlamaIndex", "Qdrant", "Pydantic AI", "RAG"],
     gradient: "from-[#c084fc]/10 via-transparent to-transparent",
+    link: {
+      href: "mailto:mari.batalkina@gmail.com?subject=Multi-Tenant%20AI%20Backend",
+      label: "Code available on request",
+    },
   },
   {
     id: "glitchlab",
     title: "GlitchLab Modernization",
     problem:
-      "Manual operational workflows were slowing down processes and creating security risks.",
+      "A client ran its workshop registration fully by hand, in spreadsheets, with every participant notified manually.",
     solution:
-      "Acted as the sole engineer to build a secure, Role-Based Access Control (RBAC) platform from scratch using Next.js and MongoDB.",
-    tags: ["Next.js", "MongoDB", "RBAC", "TypeScript"],
+      "As the sole engineer (Bachelor's thesis), built a full-stack platform with role-based access control that automates registration and participant notifications. The client now only creates new workshops.",
+    tags: ["Next.js", "TypeScript", "MongoDB", "RBAC"],
     gradient: "from-[#c084fc]/10 via-transparent to-transparent",
+    link: {
+      href: "mailto:mari.batalkina@gmail.com?subject=GlitchLab",
+      label: "Details available on request",
+    },
   },
 ];
 
@@ -135,6 +145,14 @@ function TiltCard({ project }: { project: Project }) {
               </span>
             ))}
           </div>
+
+          <a
+            id={`project-link-${project.id}`}
+            href={project.link.href}
+            className="text-sm font-semibold text-[#c084fc]/80 hover:text-[#c084fc] transition-colors duration-300"
+          >
+            {project.link.label} →
+          </a>
         </div>
       </motion.div>
     </div>

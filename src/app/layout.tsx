@@ -19,18 +19,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mariia Batalkina — Software Engineer",
   description:
-    "Software Engineer and former elite athlete. I engineer high-performance digital experiences using Next.js, TypeScript, and Python.",
+    "Software Engineer and former professional ballet dancer. I build reliable LLM systems: retrieval, validated outputs and secure multi-tenant backends.",
   openGraph: {
     title: "Mariia Batalkina — Software Engineer",
     description:
-      "Software Engineer and former elite athlete. I engineer high-performance digital experiences using Next.js, TypeScript, and Python.",
+      "Software Engineer and former professional ballet dancer. I build reliable LLM systems: retrieval, validated outputs and secure multi-tenant backends.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Mariia Batalkina — Software Engineer",
     description:
-      "Software Engineer and former elite athlete. Building secure, scalable architectures.",
+      "Software Engineer and former professional ballet dancer. Building reliable LLM systems.",
   },
 };
 
