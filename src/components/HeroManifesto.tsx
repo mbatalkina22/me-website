@@ -61,7 +61,7 @@ function KineticWord({
             ? "drop-shadow(0 0 28px rgba(192,132,252,0.55)) drop-shadow(0 0 60px rgba(192,132,252,0.2))"
             : "drop-shadow(0 0 0px rgba(192,132,252,0))",
         }}
-        className="select-none font-black tracking-tighter leading-none text-7xl md:text-9xl"
+        className="select-none font-black tracking-tighter leading-none text-6xl md:text-8xl xl:text-9xl"
       >
         {label}
       </motion.h2>
